@@ -24,3 +24,7 @@ formulario.addEventListener('submit', function(event) {
     }
     
 });
+
+// window.comunicacion.inicioCorrecto(function(event, args) {
+//     alert(args);
+// });
