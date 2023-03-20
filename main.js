@@ -41,4 +41,9 @@ ipcMain.on('registroValido', function(event, args) {
     // ventana.webContents.send('inicioCorrecto', 'Bienvenido');
 });
 
+
+ipcMain.on("editarProducto", function(event, args) {
+    console.log("editar producto!");
+});
+
 app.whenReady().then(createWindow);
