@@ -66,4 +66,29 @@ ipcMain.on("editarProducto", function(event, args) {
     });
 });
 
+
+let pedidoProductoWindow;
+
+function createPedidoProductoWindow() {
+    pedidoProductoWindow = new BrowserWindow({
+        width: 640, 
+        height: 360, 
+        webPreferences: {
+            preload: path.join(app.getAppPath(), 'preload.js')
+        }
+    });
+
+    pedidoProductoWindow.loadFile('pedido-producto.html');
+}
+
+
+ipcMain.on("solicitarPedidoProducto", function(event, args) {
+    console.log("solicitar pedido producto!");
+
+    createPedidoProductoWindow();
+    pedidoProductoWindow.webContents.on('did-finish-load', function() {
+        pedidoProductoWindow.webContents.send('pedidoProducto', 'Producto 1');
+    });
+});
+
 app.whenReady().then(createWindow);
