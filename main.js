@@ -29,7 +29,7 @@ function createListaProductosWindow() {
         }
     });
 
-    listaProductosVentana.loadFile('segundo.html');
+    listaProductosVentana.loadFile('lista-productos.html');
 }
 
 ipcMain.on('registroValido', function(event, args) {
