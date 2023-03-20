@@ -75,3 +75,19 @@ h2 {
     margin-bottom: 15px; }
     .custom-table .box td, .custom-table .box th {
       border: none !important; }
+
+#form-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#form-login label {
+  color: #f9f9f9;
+}
+
+#form-login input[type="submit"] {
+  border-radius: 50px; /* set the border-radius value to half of the button's height to make it circular */
+}
