@@ -42,8 +42,28 @@ ipcMain.on('registroValido', function(event, args) {
 });
 
 
+let editProductoWindow;
+
+function createEditProductoWindow() {
+    editProductoWindow = new BrowserWindow({
+        width: 640, 
+        height: 360, 
+        webPreferences: {
+            preload: path.join(app.getAppPath(), 'preload.js')
+        }
+    });
+
+    editProductoWindow.loadFile('edit-producto.html');
+}
+
+
 ipcMain.on("editarProducto", function(event, args) {
     console.log("editar producto!");
+
+    createEditProductoWindow();
+    editProductoWindow.webContents.on('did-finish-load', function() {
+        editProductoWindow.webContents.send('editThisProduct', 'Producto 1');
+    });
 });
 
 app.whenReady().then(createWindow);

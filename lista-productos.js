@@ -10,7 +10,7 @@ window.comunicacion.inicioCorrecto(function(event, args) {
 
 for (let item of editarElement) {
     item.addEventListener("click", function() {
-        alert("editar");
+        console.log("editar");
 
         window.comunicacion.editarProducto();
     });
