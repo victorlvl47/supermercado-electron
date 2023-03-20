@@ -12,7 +12,24 @@
 </head>
 <body>
   
-  <h1>edit producto</h1>
+  <h1 id="producto-id">Producto 1392</h1>
+  <form id="form-login">
+    <label for="nombre-login">nombre</label>
+    <input type="text" id="nombre-login" minlength="8" required>
+    <br>
+    <label for="descripcion">descripcion</label>
+    <input type="text" id="descripcion" required>
+    <br>
+    <label for="categoria">categoria</label>
+    <input type="text" id="categoria" required>
+    <br>
+    <label for="inventario">inventario</label>
+    <input type="number" id="inventario" required>
+    <br>
+    <input type="submit" value="Guardar">
+    <br>
+    <button id="cancelar-btn">Cancelar</button>
+  </form>
 
   <script type="text/javascript" src="edit-producto.js"></script>
 </body>

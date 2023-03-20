@@ -91,3 +91,8 @@ h2 {
 #form-login input[type="submit"] {
   border-radius: 50px; /* set the border-radius value to half of the button's height to make it circular */
 }
+
+#producto-id {
+  text-align: center;
+  color:rgba(255, 255, 255, 1);
+}
