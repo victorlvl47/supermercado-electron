@@ -20,7 +20,7 @@ function createWindow() {
 
 let listaProductosVentana;
 // Create window
-function createWindow2() {
+function createListaProductosWindow() {
     listaProductosVentana = new BrowserWindow({
         width: 640, 
         height: 360, 
@@ -34,7 +34,7 @@ function createWindow2() {
 
 ipcMain.on('registroValido', function(event, args) {
     console.log(args);
-    createWindow2();
+    createListaProductosWindow();
     listaProductosVentana.webContents.on('did-finish-load', function() {
         listaProductosVentana.webContents.send('inicioCorrecto', 'Bienvenido');
     });
