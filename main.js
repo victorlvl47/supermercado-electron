@@ -18,10 +18,10 @@ function createWindow() {
 
 
 
-let ventana2;
+let listaProductosVentana;
 // Create window
 function createWindow2() {
-    ventana2 = new BrowserWindow({
+    listaProductosVentana = new BrowserWindow({
         width: 640, 
         height: 360, 
         webPreferences: {
@@ -29,14 +29,14 @@ function createWindow2() {
         }
     });
 
-    ventana2.loadFile('segundo.html');
+    listaProductosVentana.loadFile('segundo.html');
 }
 
 ipcMain.on('registroValido', function(event, args) {
     console.log(args);
     createWindow2();
-    ventana2.webContents.on('did-finish-load', function() {
-        ventana2.webContents.send('inicioCorrecto', 'Bienvenido');
+    listaProductosVentana.webContents.on('did-finish-load', function() {
+        listaProductosVentana.webContents.send('inicioCorrecto', 'Bienvenido');
     });
     // ventana.webContents.send('inicioCorrecto', 'Bienvenido');
 });
