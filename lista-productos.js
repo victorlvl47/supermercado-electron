@@ -1,5 +1,6 @@
-var res = document.getElementById('respuesta');
+// var res = document.getElementById('respuesta');
 
 window.comunicacion.inicioCorrecto(function(event, args) {
-    res.innerHTML = args;
+    // res.innerHTML = args;
+    console.log("inicioCorrecto");
 });
