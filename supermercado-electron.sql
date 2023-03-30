@@ -46,4 +46,15 @@ VALUES
 
 
 
+
+-- Productos --
+INSERT INTO productos (nombre_producto, descripcion_producto, categoria_producto, inventario_producto) VALUES
+('Product 1', 'Description 1', 'Category A', 10),
+('Product 2', 'Description 2', 'Category A', 20),
+('Product 3', 'Description 3', 'Category B', 30),
+('Product 4', 'Description 4', 'Category B', 40),
+('Product 5', 'Description 5', 'Category C', 50),
+('Product 6', 'Description 6', 'Category C', 60),
+('Product 7', 'Description 7', 'Category C', 70);
+
 -- ------------------------------------------------------------------------
