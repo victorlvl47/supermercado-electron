@@ -29,3 +29,20 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- ------------------------------------------------------------------------
+-- 
+-- Insert data to DB
+--
+
+-- Usuarios --
+INSERT INTO usuarios (nombre_usuario, numero_usuario, contrasena_usuario)
+VALUES 
+('user1', '123456789', 'password1'),
+('user2', '987654321', 'password2'),
+('user3', '555555555', 'password3');
+
+
+
+-- ------------------------------------------------------------------------
