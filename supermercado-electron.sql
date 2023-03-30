@@ -34,7 +34,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- ------------------------------------------------------------------------
 -- 
 -- Insert data to DB
---
+-- 
 
 -- Usuarios --
 INSERT INTO usuarios (nombre_usuario, numero_usuario, contrasena_usuario)
