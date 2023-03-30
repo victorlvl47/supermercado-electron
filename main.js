@@ -2,6 +2,20 @@ const {app, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
 const mysql = require('mysql2');
 
+// -----------------------------------------------------------------------------
+// 
+// Crear conexion
+// 
+
+const conexion = mysql.createConnection({
+    host: 'localhost', 
+    user: 'actividad5', 
+    password: 'rNCJv9mkmWK469xC',
+    database: 'giphy_data_db'
+});
+
+// -----------------------------------------------------------------------------
+
 let ventana;
 
 // Create window
