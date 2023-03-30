@@ -9,9 +9,9 @@ const mysql = require('mysql2');
 
 const conexion = mysql.createConnection({
     host: 'localhost', 
-    user: 'actividad5', 
+    user: 'supermercado-usr', 
     password: 'rNCJv9mkmWK469xC',
-    database: 'giphy_data_db'
+    database: 'supermercado_electron'
 });
 
 // -----------------------------------------------------------------------------
