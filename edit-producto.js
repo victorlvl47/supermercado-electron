@@ -18,6 +18,12 @@ window.comunicacion.editThisProduct(function(event, args) {
     const inventarioInput = document.getElementById('inventario');
     inventarioInput.value = productoInfo.inventario_producto;
 
+    var formulario = document.getElementById('form-login');
+    formulario.addEventListener('submit', function(event) {
+        event.preventDefault();
+                
+    });
+
 });
 
 
