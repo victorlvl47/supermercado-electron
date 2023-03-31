@@ -54,10 +54,17 @@ ipcMain.on('registroValido', function(event, args) {
         .execute("SELECT * FROM usuarios WHERE numero_usuario = ? AND contrasena_usuario = ?", [args[0], args[1]])
         .then(([results, fields]) => {
             if (results.length > 0) {
-                createListaProductosWindow();
-                listaProductosVentana.webContents.on('did-finish-load', function() {
-                    listaProductosVentana.webContents.send('inicioCorrecto', 'Bienvenido');
-                });
+
+                // Get productos
+                conexion.promise()
+                    .execute("SELECT * FROM productos")
+                    .then(([results, fields]) => {
+
+                        createListaProductosWindow();
+                        listaProductosVentana.webContents.on('did-finish-load', function() {
+                            listaProductosVentana.webContents.send('inicioCorrecto', results);
+                        });
+                    });
             }
             else {
                 console.log("Couldn't find the user");

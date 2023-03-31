@@ -5,6 +5,8 @@ var pedidoElements = document.getElementsByClassName('realizar-pedido');
 window.comunicacion.inicioCorrecto(function(event, args) {
     // res.innerHTML = args;
     console.log("inicioCorrecto");
+
+    console.log(args);
 });
 
 
