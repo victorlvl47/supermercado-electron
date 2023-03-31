@@ -12,4 +12,10 @@ window.comunicacion.editThisProduct(function(event, args) {
     const descripcionProductoInput = document.getElementById('descripcion');
     descripcionProductoInput.value = productoInfo.descripcion_producto;
 
+    const categoriaInput = document.getElementById('categoria');
+    categoriaInput.value = productoInfo.categoria_producto;
+
+    const inventarioInput = document.getElementById('inventario');
+    inventarioInput.value = productoInfo.inventario_producto;
+
 });
