@@ -39,8 +39,8 @@ let listaProductosVentana;
 // Create window
 function createListaProductosWindow() {
     listaProductosVentana = new BrowserWindow({
-        width: 640, 
-        height: 360, 
+        width: 1440,  
+        height: 810, 
         webPreferences: {
             preload: path.join(app.getAppPath(), 'preload.js')
         }
@@ -80,8 +80,8 @@ let editProductoWindow;
 
 function createEditProductoWindow() {
     editProductoWindow = new BrowserWindow({
-        width: 640, 
-        height: 360, 
+        width: 960, 
+        height: 540, 
         webPreferences: {
             preload: path.join(app.getAppPath(), 'preload.js')
         }
@@ -123,8 +123,8 @@ let pedidoProductoWindow;
 
 function createPedidoProductoWindow() {
     pedidoProductoWindow = new BrowserWindow({
-        width: 640, 
-        height: 360, 
+        width: 960, 
+        height: 540, 
         webPreferences: {
             preload: path.join(app.getAppPath(), 'preload.js')
         }
