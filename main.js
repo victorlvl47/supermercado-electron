@@ -130,6 +130,13 @@ ipcMain.on("updateProduct", function(event, args) {
     .then(([results, fields]) => {
         console.log("Product updated successfully");
         console.log(results);
+
+        // Get productos
+        conexion.promise()
+        .execute("SELECT * FROM productos")
+        .then(([results, fields]) => {
+            listaProductosVentana.webContents.send('inicioCorrecto', results);
+        });
     })
     .catch((error) => {
         console.log(error);

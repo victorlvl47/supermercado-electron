@@ -10,6 +10,7 @@ window.comunicacion.inicioCorrecto(function(event, args) {
 
     // get the table body element
     var tbody = document.querySelector('#products-list');
+    tbody.innerHTML = '';
 
     // loop through the products_list and create a row for each product
     for (var i = 0; i < products_list.length; i++) {
