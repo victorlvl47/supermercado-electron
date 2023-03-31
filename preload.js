@@ -8,6 +8,7 @@ contextBridge.exposeInMainWorld(
         editarProducto: (datos) => ipcRenderer.send('editarProducto', datos), 
         editThisProduct: (callback) => ipcRenderer.on('editThisProduct', callback), 
         solicitarPedidoProducto: (datos) => ipcRenderer.send('solicitarPedidoProducto', datos), 
-        pedidoProducto: (callback) => ipcRenderer.on('pedidoProducto', callback)
+        pedidoProducto: (callback) => ipcRenderer.on('pedidoProducto', callback), 
+        updateProduct: (datos) => ipcRenderer.send('updateProduct', datos)
     }
 );

@@ -21,7 +21,16 @@ window.comunicacion.editThisProduct(function(event, args) {
     var formulario = document.getElementById('form-login');
     formulario.addEventListener('submit', function(event) {
         event.preventDefault();
-                
+
+        let product = {
+            id_producto: productoInfo.id_producto, 
+            nombre_producto: nombreProductoInput.value, 
+            descripcion_producto: descripcionProductoInput.value, 
+            categoria_producto: categoriaInput.value, 
+            inventario_producto: inventarioInput.value
+        };
+            
+        window.comunicacion.updateProduct(product);
     });
 
 });

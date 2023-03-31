@@ -50,7 +50,7 @@ function createListaProductosWindow() {
 }
 
 ipcMain.on('registroValido', function(event, args) {
-    console.log(args);
+    // console.log(args);
 
     conexion.promise()
         .execute("SELECT * FROM usuarios WHERE numero_usuario = ? AND contrasena_usuario = ?", [args[0], args[1]])
@@ -105,7 +105,6 @@ ipcMain.on("editarProducto", function(event, args) {
     conexion.promise()
     .execute("SELECT * FROM productos WHERE id_producto = ?", [args])
     .then(([results, fields]) => {
-        console.log(results)
         if (results.length > 0) {
             createEditProductoWindow();
             editProductoWindow.webContents.on('did-finish-load', function() {
@@ -116,6 +115,13 @@ ipcMain.on("editarProducto", function(event, args) {
     .catch((error) => {
         console.log(error);
     });
+});
+
+
+ipcMain.on("updateProduct", function(event, args) {
+    console.log("updating your product");
+    console.log("product update info:")
+    console.log(args);
 });
 
 
