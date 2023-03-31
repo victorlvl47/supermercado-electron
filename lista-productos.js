@@ -6,24 +6,75 @@ window.comunicacion.inicioCorrecto(function(event, args) {
     // res.innerHTML = args;
     console.log("inicioCorrecto");
 
-    console.log(args);
+    var products_list = args;
+
+    // get the table body element
+    var tbody = document.querySelector('#products-list');
+
+    // loop through the products_list and create a row for each product
+    for (var i = 0; i < products_list.length; i++) {
+        
+        var product = products_list[i];
+        var row = document.createElement('tr');
+
+        // create the columns and add the product data to them
+        var idColumn = document.createElement('td');
+        idColumn.textContent = product.id_producto;
+
+        var nameColumn = document.createElement('td');
+        var nameLink = document.createElement('a');
+        nameLink.href = '#';
+        nameLink.textContent = product.nombre_producto;
+        nameColumn.appendChild(nameLink);
+
+        var descriptionColumn = document.createElement('td');
+        descriptionColumn.textContent = product.descripcion_producto;
+
+        var categoryColumn = document.createElement('td');
+        categoryColumn.textContent = product.categoria_producto;
+
+        var inventoryColumn = document.createElement('td');
+        inventoryColumn.textContent = product.inventario_producto;
+
+        var editColumn = document.createElement('td');
+        var editLink = document.createElement('a');
+        editLink.href = '#';
+        editLink.className = 'more';
+        editLink.textContent = 'Editar';
+        editColumn.appendChild(editLink);
+
+        var orderColumn = document.createElement('td');
+        orderColumn.className = 'realizar-pedido';
+        orderColumn.textContent = 'Pedido';
+
+        // add the columns to the row
+        row.appendChild(idColumn);
+        row.appendChild(nameColumn);
+        row.appendChild(descriptionColumn);
+        row.appendChild(categoryColumn);
+        row.appendChild(inventoryColumn);
+        row.appendChild(editColumn);
+        row.appendChild(orderColumn);
+      
+
+        // add the row to the table body
+        tbody.appendChild(row);
+    }
+
+    for (let item of editarElement) {
+        item.addEventListener("click", function() {
+            console.log("editar");
+    
+            window.comunicacion.editarProducto();
+        });
+    }
+    
+    
+    for (let item of pedidoElements) {
+        item.addEventListener("click", function() {
+            console.log("pedido");
+    
+            window.comunicacion.solicitarPedidoProducto();
+        });
+    }
 });
-
-
-
-for (let item of editarElement) {
-    item.addEventListener("click", function() {
-        console.log("editar");
-
-        window.comunicacion.editarProducto();
-    });
-}
-
-
-for (let item of pedidoElements) {
-    item.addEventListener("click", function() {
-        console.log("pedido");
-
-        window.comunicacion.solicitarPedidoProducto();
-    });
-}
