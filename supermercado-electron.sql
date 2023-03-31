@@ -64,4 +64,15 @@ INSERT INTO productos (nombre_producto, descripcion_producto, categoria_producto
 ('Product 6', 'Description 6', 'Category C', 60),
 ('Product 7', 'Description 7', 'Category C', 70);
 
+
+
+
+-- Proveedores --
+INSERT INTO proveedores (id_proveedor, nombre_proveedor) VALUES
+(1, 'Proveedor A'),
+(2, 'Proveedor B'),
+(3, 'Proveedor C'),
+(4, 'Proveedor D'),
+(5, 'Proveedor E');
+
 -- ------------------------------------------------------------------------
