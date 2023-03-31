@@ -92,11 +92,29 @@ function createEditProductoWindow() {
 
 
 ipcMain.on("editarProducto", function(event, args) {
-    console.log("editar producto!");
 
-    createEditProductoWindow();
-    editProductoWindow.webContents.on('did-finish-load', function() {
-        editProductoWindow.webContents.send('editThisProduct', 'Producto 1');
+    // conexion.promise()
+    // .execute("UPDATE productos SET nombre_producto = ?, column2 = ? WHERE id = ?", [value1, value2, id])
+    // .then(([results, fields]) => {
+    //     console.log(results)
+    // })
+    // .catch((error) => {
+    //     console.log(error);
+    // });
+
+    conexion.promise()
+    .execute("SELECT * FROM productos WHERE id_producto = ?", [args])
+    .then(([results, fields]) => {
+        console.log(results)
+        if (results.length > 0) {
+            createEditProductoWindow();
+            editProductoWindow.webContents.on('did-finish-load', function() {
+                editProductoWindow.webContents.send('editThisProduct', results);
+            });
+        }
+    })
+    .catch((error) => {
+        console.log(error);
     });
 });
 

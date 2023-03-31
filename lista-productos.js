@@ -50,7 +50,7 @@ window.comunicacion.inicioCorrecto(function(event, args) {
             var idProduct = this.closest('tr').querySelector('.id-product').textContent;
             console.log(idProduct);
 
-            window.comunicacion.editarProducto();
+            window.comunicacion.editarProducto(idProduct);
         });
         editColumn.appendChild(editLink);
 
