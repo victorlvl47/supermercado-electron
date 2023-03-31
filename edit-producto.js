@@ -19,3 +19,12 @@ window.comunicacion.editThisProduct(function(event, args) {
     inventarioInput.value = productoInfo.inventario_producto;
 
 });
+
+
+
+
+const cancelarBtn = document.getElementById('cancelar-btn');
+cancelarBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.close();
+});
