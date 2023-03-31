@@ -119,9 +119,22 @@ ipcMain.on("editarProducto", function(event, args) {
 
 
 ipcMain.on("updateProduct", function(event, args) {
-    console.log("updating your product");
-    console.log("product update info:")
-    console.log(args);
+      
+    var id = args.id_producto;
+    var nombre = args.nombre_producto;
+    var descripcion = args.descripcion_producto;
+    var categoria = args.categoria_producto;
+    var inventario = args.inventario_producto;
+    conexion.promise()
+    .execute("UPDATE productos SET nombre_producto = ?, descripcion_producto = ?, categoria_producto = ?, inventario_producto = ? WHERE id_producto = ?", [nombre, descripcion, categoria, inventario, id])
+    .then(([results, fields]) => {
+        console.log("Product updated successfully");
+        console.log(results);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+
 });
 
 
