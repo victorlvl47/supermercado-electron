@@ -19,6 +19,8 @@ window.comunicacion.inicioCorrecto(function(event, args) {
 
         // create the columns and add the product data to them
         var idColumn = document.createElement('td');
+        idColumn.className = "id-product";
+        idColumn.id = "id-producto-" + product.id_producto;
         idColumn.textContent = product.id_producto;
 
         var nameColumn = document.createElement('td');
@@ -41,11 +43,29 @@ window.comunicacion.inicioCorrecto(function(event, args) {
         editLink.href = '#';
         editLink.className = 'more';
         editLink.textContent = 'Editar';
+        editLink.addEventListener('click', function(event) {
+            console.log("editar");
+
+            event.preventDefault();
+            var idProduct = this.closest('tr').querySelector('.id-product').textContent;
+            console.log(idProduct);
+
+            window.comunicacion.editarProducto();
+        });
         editColumn.appendChild(editLink);
 
         var orderColumn = document.createElement('td');
         orderColumn.className = 'realizar-pedido';
         orderColumn.textContent = 'Pedido';
+        orderColumn.addEventListener('click', function(event) {
+            console.log("pedido");
+
+            event.preventDefault();
+            var idProduct = this.closest('tr').querySelector('.id-product').textContent;
+            console.log(idProduct);
+
+            window.comunicacion.solicitarPedidoProducto();
+        });
 
         // add the columns to the row
         row.appendChild(idColumn);
@@ -59,22 +79,5 @@ window.comunicacion.inicioCorrecto(function(event, args) {
 
         // add the row to the table body
         tbody.appendChild(row);
-    }
-
-    for (let item of editarElement) {
-        item.addEventListener("click", function() {
-            console.log("editar");
-    
-            window.comunicacion.editarProducto();
-        });
-    }
-    
-    
-    for (let item of pedidoElements) {
-        item.addEventListener("click", function() {
-            console.log("pedido");
-    
-            window.comunicacion.solicitarPedidoProducto();
-        });
     }
 });
