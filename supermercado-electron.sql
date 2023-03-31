@@ -55,6 +55,13 @@ INSERT INTO productos (nombre_producto, descripcion_producto, categoria_producto
 ('Product 4', 'Description 4', 'Category B', 40),
 ('Product 5', 'Description 5', 'Category C', 50),
 ('Product 6', 'Description 6', 'Category C', 60),
-('Product 7', 'Description 7', 'Category C', 70);
+('Product 7', 'Description 7', 'Category C', 70), 
+("Leche Entera", "Leche fresca con un contenido graso del 3.5%", "Lácteos", 50), 
+("Manzanas", "Fruta fresca y jugosa de color rojo y verde", "Frutas",	100), 
+("Cereal de Avena", "Cereal de avena integral y saludable con trozos de fruta deshidratada", "Desayunos", 20),
+("Pan Blanco", "Pan blanco recién horneado con una corteza crujiente y una miga suave", "Panadería", 30),
+("Pañales para Bebé", "Pañales desechables para bebés con una capacidad de absorción de hasta 12 horas", "Bebés", 80),
+("Café Molido", "Café molido de tueste medio con un sabor intenso y equilibrado", "Café", 40),
+("Naranjas", "Naranjas frescas", "Frutas", 205);
 
 -- ------------------------------------------------------------------------
