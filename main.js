@@ -57,27 +57,34 @@ ipcMain.on('registroValido', function(event, args) {
         .then(([results, fields]) => {
             if (results.length > 0) {
 
-                // Get productos
+                // Get products and orders if any
                 conexion.promise()
-                    .execute("SELECT * FROM productos")
+                    .execute(`SELECT p.*, COALESCE(pedidos.total_cantidad_pedido, 0) as total_cantidad_pedido
+                    FROM productos p
+                    LEFT JOIN (
+                      SELECT id_producto, SUM(cantidad_pedido) AS total_cantidad_pedido
+                      FROM pedidos
+                      GROUP BY id_producto
+                    ) pedidos ON p.id_producto = pedidos.id_producto`)
                     .then(([results, fields]) => {
-
-                        // Get orders
-                        conexion.promise()
-                        .execute("SELECT * FROM pedidos")
-                        .then(([orders, fields]) => {
-
-                            createListaProductosWindow();
-                            listaProductosVentana.webContents.on('did-finish-load', function() {
-                                listaProductosVentana.webContents.send('inicioCorrecto', [results, orders]);
-                            });
+                        
+                        createListaProductosWindow();
+                        listaProductosVentana.webContents.on('did-finish-load', function() {
+                            listaProductosVentana.webContents.send('inicioCorrecto', results);
                         });
-                    });
+                        
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });;
             }
             else {
                 console.log("Couldn't find the user");
             }
-        });
+        })
+        .catch((error) => {
+            console.log(error);
+        });;
     // ventana.webContents.send('inicioCorrecto', 'Bienvenido');
 });
 

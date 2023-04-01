@@ -6,8 +6,7 @@ window.comunicacion.inicioCorrecto(function(event, args) {
     // res.innerHTML = args;
     console.log("inicioCorrecto");
 
-    var products_list = args[0];
-    console.log(args[1]);
+    var products_list = args;
 
     // get the table body element
     var tbody = document.querySelector('#products-list');
@@ -41,7 +40,7 @@ window.comunicacion.inicioCorrecto(function(event, args) {
         inventoryColumn.textContent = product.inventario_producto;
         var orderQtySpan = document.createElement('span');
         orderQtySpan.id = 'order-qty';
-        orderQtySpan.textContent = " ( " + 0 + " ) ";
+        orderQtySpan.textContent = " ( " + product.total_cantidad_pedido + " ) ";
         inventoryColumn.appendChild(orderQtySpan);
 
         var editColumn = document.createElement('td');
