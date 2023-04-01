@@ -20,7 +20,14 @@ function setProductInfo(id, nombre) {
   
     idElement.textContent = 'Producto ID: ' + id;
     nombreElement.textContent = nombre;
-}  
+}
+
+function getFormData() {
+    const supplier = document.querySelector('#proveedores').value;
+    const quantity = document.querySelector('#cantidad').value;
+    return {supplier, quantity};
+}
+  
 
 
 window.comunicacion.pedidoProducto(function(event, args) {
@@ -32,6 +39,14 @@ window.comunicacion.pedidoProducto(function(event, args) {
     const supplierNames = args[0];
     const supplierSelect = createSupplierSelect(supplierNames);
     formLogin.insertBefore(supplierSelect, formLogin.children[1]);
+
+    var formulario = document.getElementById('form-login');
+    formulario.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const formData = getFormData();
+        console.log(formData);
+    });
 });
 
 const cancelarBtn = document.getElementById('cancelar-btn');
