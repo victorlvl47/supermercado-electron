@@ -129,7 +129,6 @@ ipcMain.on("updateProduct", function(event, args) {
     .execute("UPDATE productos SET nombre_producto = ?, descripcion_producto = ?, categoria_producto = ?, inventario_producto = ? WHERE id_producto = ?", [nombre, descripcion, categoria, inventario, id])
     .then(([results, fields]) => {
         console.log("Product updated successfully");
-        console.log(results);
 
         // Get productos
         conexion.promise()
