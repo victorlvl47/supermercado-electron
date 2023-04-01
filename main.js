@@ -93,15 +93,6 @@ function createEditProductoWindow() {
 
 ipcMain.on("editarProducto", function(event, args) {
 
-    // conexion.promise()
-    // .execute("UPDATE productos SET nombre_producto = ?, column2 = ? WHERE id = ?", [value1, value2, id])
-    // .then(([results, fields]) => {
-    //     console.log(results)
-    // })
-    // .catch((error) => {
-    //     console.log(error);
-    // });
-
     conexion.promise()
     .execute("SELECT * FROM productos WHERE id_producto = ?", [args])
     .then(([results, fields]) => {
@@ -189,6 +180,29 @@ ipcMain.on("solicitarPedidoProducto", function(event, args) {
     .catch((error) => {
         console.log(error);
     });
+});
+
+
+ipcMain.on("orderProduct", function(event, args) {
+
+    var id_proveedor = args.id_proveedor;
+    var id_producto = args.id_producto;
+    var cantidad_pedido = args.cantidad_pedido;
+
+    conexion.promise()
+    .execute("INSERT INTO pedidos (id_proveedor, id_producto, cantidad_pedido) VALUES (?, ?, ?)", [id_proveedor, id_producto, cantidad_pedido])
+    .then(([results, fields]) => {
+        console.log("New order added successfully");
+
+        pedidoProductoWindow.webContents.send('nuevoPedidoAgregado', "Nuevo pedido añadido con éxito");
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+
+      
+
+    console.log(args);
 });
 
 app.whenReady().then(createWindow);

@@ -6,7 +6,7 @@ function createSupplierSelect(suppliers) {
   
     suppliers.forEach((supplier) => {
       const option = document.createElement('option');
-      option.setAttribute('value', supplier.nombre_proveedor);
+      option.setAttribute('value', supplier.id_proveedor);
       option.textContent = supplier.nombre_proveedor;
       select.appendChild(option);
     });
@@ -45,14 +45,19 @@ window.comunicacion.pedidoProducto(function(event, args) {
         event.preventDefault();
 
         const formData = getFormData();
-        const pedido = {
+        const productOrder = {
             id_proveedor: formData.supplier, 
             id_producto: args[1].id_producto, 
             cantidad_pedido: formData.quantity
         };
 
-        
+        window.comunicacion.orderProduct(productOrder);
     });
+});
+
+
+window.comunicacion.nuevoPedidoAgregado(function(event, args) {
+    alert(args);
 });
 
 const cancelarBtn = document.getElementById('cancelar-btn');
