@@ -3,6 +3,7 @@
 const {app, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
 const mysql = require('mysql2');
+const bcrypt = require('bcrypt');
 
 // -----------------------------------------------------------------------------
 // 
