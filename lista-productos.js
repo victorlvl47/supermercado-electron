@@ -38,6 +38,10 @@ window.comunicacion.inicioCorrecto(function(event, args) {
 
         var inventoryColumn = document.createElement('td');
         inventoryColumn.textContent = product.inventario_producto;
+        var orderQtySpan = document.createElement('span');
+        orderQtySpan.id = 'order-qty';
+        orderQtySpan.textContent = " ( " + 0 + " ) ";
+        inventoryColumn.appendChild(orderQtySpan);
 
         var editColumn = document.createElement('td');
         var editLink = document.createElement('a');
