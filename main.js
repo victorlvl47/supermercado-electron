@@ -134,9 +134,15 @@ ipcMain.on("updateProduct", function(event, args) {
     .then(([results, fields]) => {
         console.log("Product updated successfully");
 
-        // Get productos
+        // Get productos and orders if any
         conexion.promise()
-        .execute("SELECT * FROM productos")
+        .execute(`SELECT p.*, COALESCE(pedidos.total_cantidad_pedido, 0) as total_cantidad_pedido
+        FROM productos p
+        LEFT JOIN (
+            SELECT id_producto, SUM(cantidad_pedido) AS total_cantidad_pedido
+            FROM pedidos
+            GROUP BY id_producto
+        ) pedidos ON p.id_producto = pedidos.id_producto`)
         .then(([results, fields]) => {
             listaProductosVentana.webContents.send('inicioCorrecto', results);
         });
