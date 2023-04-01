@@ -53,31 +53,46 @@ function createListaProductosWindow() {
 ipcMain.on('registroValido', function(event, args) {
     // console.log(args);
 
+    var plaintextPassword = args[1];
+    var numero_usuario = args[0]
+
     conexion.promise()
-        .execute("SELECT * FROM usuarios WHERE numero_usuario = ? AND contrasena_usuario = ?", [args[0], args[1]])
+        .execute("SELECT * FROM usuarios WHERE numero_usuario = ?", [numero_usuario])
         .then(([results, fields]) => {
+        
             if (results.length > 0) {
 
-                // Get products and orders if any
-                conexion.promise()
-                    .execute(`SELECT p.*, COALESCE(pedidos.total_cantidad_pedido, 0) as total_cantidad_pedido
-                    FROM productos p
-                    LEFT JOIN (
-                      SELECT id_producto, SUM(cantidad_pedido) AS total_cantidad_pedido
-                      FROM pedidos
-                      GROUP BY id_producto
-                    ) pedidos ON p.id_producto = pedidos.id_producto`)
-                    .then(([results, fields]) => {
-                        
-                        createListaProductosWindow();
-                        listaProductosVentana.webContents.on('did-finish-load', function() {
-                            listaProductosVentana.webContents.send('inicioCorrecto', results);
-                        });
-                        
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });;
+                var hash = results[0].contrasena_usuario;
+                bcrypt.compare(plaintextPassword, hash, function(err, result) {
+
+                    if (err) {
+                        console.error(err);
+                    }
+                    else {
+                        if (result) {
+                            // Get products and orders if any
+                            conexion.promise()
+                            .execute(`SELECT p.*, COALESCE(pedidos.total_cantidad_pedido, 0) as total_cantidad_pedido
+                            FROM productos p
+                            LEFT JOIN (
+                            SELECT id_producto, SUM(cantidad_pedido) AS total_cantidad_pedido
+                            FROM pedidos
+                            GROUP BY id_producto
+                            ) pedidos ON p.id_producto = pedidos.id_producto`)
+                            .then(([results, fields]) => {
+                                
+                                createListaProductosWindow();
+                                listaProductosVentana.webContents.on('did-finish-load', function() {
+                                    listaProductosVentana.webContents.send('inicioCorrecto', results);
+                                });
+                                
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
+                        }
+                    }
+                });
             }
             else {
                 console.log("Couldn't find the user");
