@@ -160,11 +160,18 @@ function createPedidoProductoWindow() {
 
 
 ipcMain.on("solicitarPedidoProducto", function(event, args) {
-    console.log("solicitar pedido producto!");
 
-    createPedidoProductoWindow();
-    pedidoProductoWindow.webContents.on('did-finish-load', function() {
-        pedidoProductoWindow.webContents.send('pedidoProducto', 'Producto 1');
+    // Get proveedores
+    conexion.promise()
+    .execute("SELECT * FROM proveedores")
+    .then(([results, fields]) => {
+        createPedidoProductoWindow();
+        pedidoProductoWindow.webContents.on('did-finish-load', function() {
+            pedidoProductoWindow.webContents.send('pedidoProducto', results);
+        });
+    })
+    .catch((error) => {
+        console.log(error);
     });
 });
 

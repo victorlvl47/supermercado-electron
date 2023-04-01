@@ -73,6 +73,11 @@ INSERT INTO proveedores (id_proveedor, nombre_proveedor) VALUES
 (2, 'Proveedor B'),
 (3, 'Proveedor C'),
 (4, 'Proveedor D'),
-(5, 'Proveedor E');
+(5, 'Proveedor E'), 
+(1, 'ProveedorTech'),
+(2, 'GreenNature S.A.'),
+(3, 'Suministros Industriales del Norte'),
+(4, 'CentralCompras Ltda.'),
+(5, 'Abastecedora Nacional de Productos');
 
 -- ------------------------------------------------------------------------
