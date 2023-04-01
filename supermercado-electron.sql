@@ -87,11 +87,14 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- 
 
 -- Usuarios --
+-- user1 password: password1
+-- user2 password: password2
+-- user3 password: password3
 INSERT INTO usuarios (nombre_usuario, numero_usuario, contrasena_usuario)
 VALUES 
-('user1', '123456789', 'password1'),
-('user2', '987654321', 'password2'),
-('user3', '555555555', 'password3');
+('user1', '123456789', '$2b$10$.gV3hKJcURC2mz00Anm1ie9kPKcpCLCfhNMRsRIAqOI8C1.yuTk6y'),
+('user2', '987654321', '$2b$10$YEvUaUNRyNhV7afz39QTBupJm2maVtWFFUIpKRu0eLyTLdjAXOUO2'),
+('user3', '555555555', '$2b$10$SKYT3uoDCqkl3k1V0RpdiO6Ry8bNhm7rQ7xEMb8sC4f2yLfN33GdS');
 
 
 
