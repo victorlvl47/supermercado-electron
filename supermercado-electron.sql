@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `supermercado_electron`.`usuarios` (
   `id_usuario` INT NOT NULL AUTO_INCREMENT,
   `nombre_usuario` VARCHAR(45) NOT NULL,
   `numero_usuario` VARCHAR(15) NOT NULL,
-  `contrasena_usuario` VARCHAR(45) NOT NULL,
+  `contrasena_usuario` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE INDEX `numero_usuario_UNIQUE` (`numero_usuario` ASC) VISIBLE)
 ENGINE = InnoDB;
