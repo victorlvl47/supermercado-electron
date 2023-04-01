@@ -45,7 +45,13 @@ window.comunicacion.pedidoProducto(function(event, args) {
         event.preventDefault();
 
         const formData = getFormData();
-        console.log(formData);
+        const pedido = {
+            id_proveedor: formData.supplier, 
+            id_producto: args[1].id_producto, 
+            cantidad_pedido: formData.quantity
+        };
+
+        
     });
 });
 
