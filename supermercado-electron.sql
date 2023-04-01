@@ -80,4 +80,16 @@ INSERT INTO proveedores (id_proveedor, nombre_proveedor) VALUES
 (9, 'CentralCompras Ltda.'),
 (10, 'Abastecedora Nacional de Productos');
 
+
+
+
+-- Pedidos --
+INSERT INTO pedidos (id_proveedor, id_producto, cantidad_pedido) 
+VALUES 
+(1, 1, 10), 
+(2, 3, 5), 
+(3, 2, 7), 
+(4, 4, 12), 
+(5, 5, 3);
+
 -- ------------------------------------------------------------------------
