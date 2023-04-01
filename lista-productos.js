@@ -6,7 +6,8 @@ window.comunicacion.inicioCorrecto(function(event, args) {
     // res.innerHTML = args;
     console.log("inicioCorrecto");
 
-    var products_list = args;
+    var products_list = args[0];
+    console.log(args[1]);
 
     // get the table body element
     var tbody = document.querySelector('#products-list');

@@ -22,13 +22,62 @@ CREATE TABLE IF NOT EXISTS `supermercado_electron`.`usuarios` (
   `nombre_usuario` VARCHAR(45) NOT NULL,
   `numero_usuario` VARCHAR(15) NOT NULL,
   `contrasena_usuario` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_usuario`))
+  PRIMARY KEY (`id_usuario`),
+  UNIQUE INDEX `numero_usuario_UNIQUE` (`numero_usuario` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `supermercado_electron`.`productos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `supermercado_electron`.`productos` (
+  `id_producto` INT NOT NULL AUTO_INCREMENT,
+  `nombre_producto` VARCHAR(255) NOT NULL,
+  `descripcion_producto` TEXT(255) NOT NULL,
+  `categoria_producto` VARCHAR(255) NOT NULL,
+  `inventario_producto` INT NOT NULL,
+  PRIMARY KEY (`id_producto`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `supermercado_electron`.`proveedores`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `supermercado_electron`.`proveedores` (
+  `id_proveedor` INT NOT NULL AUTO_INCREMENT,
+  `nombre_proveedor` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id_proveedor`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `supermercado_electron`.`pedidos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `supermercado_electron`.`pedidos` (
+  `id_pedido` INT NOT NULL AUTO_INCREMENT,
+  `id_producto` INT NOT NULL,
+  `id_proveedor` INT NOT NULL,
+  `cantidad_pedido` INT NOT NULL,
+  PRIMARY KEY (`id_pedido`, `id_producto`, `id_proveedor`),
+  INDEX `fk_pedidos_productos_idx` (`id_producto` ASC) VISIBLE,
+  INDEX `fk_pedidos_proveedores1_idx` (`id_proveedor` ASC) VISIBLE,
+  CONSTRAINT `fk_pedidos_productos`
+    FOREIGN KEY (`id_producto`)
+    REFERENCES `supermercado_electron`.`productos` (`id_producto`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_pedidos_proveedores1`
+    FOREIGN KEY (`id_proveedor`)
+    REFERENCES `supermercado_electron`.`proveedores` (`id_proveedor`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 
 

@@ -62,9 +62,15 @@ ipcMain.on('registroValido', function(event, args) {
                     .execute("SELECT * FROM productos")
                     .then(([results, fields]) => {
 
-                        createListaProductosWindow();
-                        listaProductosVentana.webContents.on('did-finish-load', function() {
-                            listaProductosVentana.webContents.send('inicioCorrecto', results);
+                        // Get orders
+                        conexion.promise()
+                        .execute("SELECT * FROM pedidos")
+                        .then(([orders, fields]) => {
+
+                            createListaProductosWindow();
+                            listaProductosVentana.webContents.on('did-finish-load', function() {
+                                listaProductosVentana.webContents.send('inicioCorrecto', [results, orders]);
+                            });
                         });
                     });
             }
