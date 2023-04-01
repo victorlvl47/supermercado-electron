@@ -190,19 +190,29 @@ ipcMain.on("orderProduct", function(event, args) {
     var cantidad_pedido = args.cantidad_pedido;
 
     conexion.promise()
-    .execute("INSERT INTO pedidos (id_proveedor, id_producto, cantidad_pedido) VALUES (?, ?, ?)", [id_proveedor, id_producto, cantidad_pedido])
-    .then(([results, fields]) => {
-        console.log("New order added successfully");
+    .execute("SELECT * FROM pedidos WHERE id_proveedor = ? AND id_producto = ?", [id_proveedor, id_producto])
+    .then(([pedidos, fields]) => {
+        if (pedidos.length > 0) {
+            console.log("Ese pedido ya existe!");
 
-        pedidoProductoWindow.webContents.send('nuevoPedidoAgregado', "Nuevo pedido añadido con éxito");
+            pedidoProductoWindow.webContents.send('nuevoPedidoAgregado', "No se realizo el pedido. El pedido ya existe.");
+        }
+        else {
+            conexion.promise()
+            .execute("INSERT INTO pedidos (id_proveedor, id_producto, cantidad_pedido) VALUES (?, ?, ?)", [id_proveedor, id_producto, cantidad_pedido])
+            .then(([results, fields]) => {
+                console.log("New order added successfully");
+
+                pedidoProductoWindow.webContents.send('nuevoPedidoAgregado', "Nuevo pedido añadido con éxito");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
     })
     .catch((error) => {
         console.log(error);
     });
-
-      
-
-    console.log(args);
 });
 
 app.whenReady().then(createWindow);
