@@ -165,9 +165,25 @@ ipcMain.on("solicitarPedidoProducto", function(event, args) {
     conexion.promise()
     .execute("SELECT * FROM proveedores")
     .then(([results, fields]) => {
-        createPedidoProductoWindow();
-        pedidoProductoWindow.webContents.on('did-finish-load', function() {
-            pedidoProductoWindow.webContents.send('pedidoProducto', results);
+
+        var proveedores_list = results;
+
+        // Get product
+        conexion.promise()
+        .execute("SELECT * FROM productos WHERE id_producto = ?", [args])
+        .then(([results, fields]) => {
+            if (results.length > 0) {
+
+                var productInfo = results[0];
+
+                createPedidoProductoWindow();
+                pedidoProductoWindow.webContents.on('did-finish-load', function() {
+                    pedidoProductoWindow.webContents.send('pedidoProducto', [proveedores_list, productInfo]);
+                });
+            }
+        })
+        .catch((error) => {
+            console.log(error);
         });
     })
     .catch((error) => {

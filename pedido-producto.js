@@ -14,12 +14,22 @@ function createSupplierSelect(suppliers) {
     return select;
 }
 
+function setProductInfo(id, nombre) {
+    var idElement = document.getElementById('producto-id');
+    var nombreElement = document.getElementById('producto-nombre');
+  
+    idElement.textContent = 'Producto ID: ' + id;
+    nombreElement.textContent = nombre;
+}  
+
 
 window.comunicacion.pedidoProducto(function(event, args) {
+
+    setProductInfo(args[1].id_producto, args[1].nombre_producto);
     
     // let proveedores_list = args;
     var formLogin = document.getElementById('form-login');
-    const supplierNames = args;
+    const supplierNames = args[0];
     const supplierSelect = createSupplierSelect(supplierNames);
     formLogin.insertBefore(supplierSelect, formLogin.children[1]);
 });

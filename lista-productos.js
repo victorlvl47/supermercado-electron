@@ -65,7 +65,7 @@ window.comunicacion.inicioCorrecto(function(event, args) {
             var idProduct = this.closest('tr').querySelector('.id-product').textContent;
             console.log(idProduct);
 
-            window.comunicacion.solicitarPedidoProducto();
+            window.comunicacion.solicitarPedidoProducto(idProduct);
         });
 
         // add the columns to the row
